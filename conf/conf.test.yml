@@ -1,0 +1,17 @@
+app:
+  debug: true
+  env: test
+db:
+  dbms: mysql
+  name: app_test
+  user: root
+  pass: password
+  net: tcp
+  host: db
+  port: 3306
+  parsetime: true
+  allowNativePasswords: true
+api:
+  port: 8080
+  storage_name:
+  firebase_key_json:

@@ -1,0 +1,7 @@
+extend type Image {
+  id: ID!
+  name: String!
+  url: String!
+  createdAt: Time!
+  updatedAt: Time!
+}

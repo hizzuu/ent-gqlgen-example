@@ -1,0 +1,17 @@
+{{ define "import/additional" }}
+    "github.com/hizzuu/plate-backend/conf"
+{{ end }}
+
+{{ define "model/fields/additional" }}
+    {{- if eq $.Name "Image" }}
+        File io.Reader `json:"static,omitempty"`
+    {{- end }}
+{{ end }}
+
+{{ define "model/additional/image" }}
+    {{- if eq $.Name "Image" }}
+        func (i *Image) URL() string {
+            return conf.C.Api.StorageName + i.Name
+        }
+    {{- end }}
+{{ end }}

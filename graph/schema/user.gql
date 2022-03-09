@@ -1,0 +1,46 @@
+extend type User implements Node {
+  id: ID!
+  nickname: String!
+  bio: String!
+  role: Role!
+  avatar: Image
+  createdAt: Time!
+  updatedAt: Time!
+}
+
+enum Role {
+  OFFICIAL
+  GENERAL
+}
+
+type GetUserPayload {
+  user: User!
+}
+
+type CreateUserPayload {
+  user: User!
+}
+
+type UpdateUserPayload {
+  user: User!
+}
+
+input CreateUserInput {
+  nickname: String!
+  bio: String!
+}
+
+input UpdateUserInput {
+  nickname: String!
+  bio: String!
+  avatarImage: Upload
+}
+
+extend type Query {
+  user(id: ID!): GetUserPayload!
+}
+
+extend type Mutation {
+  createUser(input: CreateUserInput!): CreateUserPayload! @authentication
+  updateUser(input: UpdateUserInput!): UpdateUserPayload! @currentUser
+}

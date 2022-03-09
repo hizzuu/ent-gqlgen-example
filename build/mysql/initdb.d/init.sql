@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS app_test;
+CREATE DATABASE app_test CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;

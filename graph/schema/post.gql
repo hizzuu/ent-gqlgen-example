@@ -1,0 +1,43 @@
+extend type Post implements Node {
+  id: ID!
+  title: String!
+  contents: String!
+  photo: Image!
+  createdAt: Time!
+  updatedAt: Time!
+  user: User!
+}
+
+type PostEdge {
+  node: Post
+  cursor: Cursor!
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]
+  totalCount: Int!
+}
+
+type GetPostPayload {
+  post: Post!
+}
+
+type CreatePostPayload {
+  post: Post!
+}
+
+input CreatePostInput {
+  title: String!
+  contents: String!
+  photoImage: Upload!
+}
+
+extend type Query {
+  post(id: ID!): GetPostPayload! @authentication
+  posts(after: Cursor, first: Int, before: Cursor, last: Int, where: PostWhereInput): PostConnection!
+}
+
+extend type Mutation {
+  createPost(input: CreatePostInput!): CreatePostPayload! @currentUser
+}
